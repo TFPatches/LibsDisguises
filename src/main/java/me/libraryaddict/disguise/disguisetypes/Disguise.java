@@ -489,10 +489,12 @@ public abstract class Disguise {
                     PacketContainer packet = new PacketContainer(Server.REL_ENTITY_MOVE);
 
                     packet.getIntegers().write(0, getEntity().getEntityId());
+
                     try {
                         for (Player player : DisguiseUtilities.getPerverts(disguise)) {
                             if (getEntity() != player) {
                                 ProtocolLibrary.getProtocolManager().sendServerPacket(player, packet, false);
+                                continue;
                             } else if (!isSelfDisguiseVisible() || !(getEntity() instanceof Player)) {
                                 continue;
                             }
@@ -790,10 +792,10 @@ public abstract class Disguise {
     }
 
     public Disguise setModifyBoundingBox(boolean modifyBox) {
-        if (((TargetedDisguise) this).getDisguiseTarget() != TargetType.SHOW_TO_EVERYONE_BUT_THESE_PLAYERS) {
-            throw new RuntimeException("Cannot modify the bounding box of a disguise which is not TargetType" +
-                    ".SHOW_TO_EVERYONE_BUT_THESE_PLAYERS");
-        }
+//        if (((TargetedDisguise) this).getDisguiseTarget() != TargetType.SHOW_TO_EVERYONE_BUT_THESE_PLAYERS) {
+//            throw new RuntimeException("Cannot modify the bounding box of a disguise which is not TargetType" +
+//                    ".SHOW_TO_EVERYONE_BUT_THESE_PLAYERS");
+//        }
 
         if (isModifyBoundingBox() != modifyBox) {
             this.modifyBoundingBox = modifyBox;
